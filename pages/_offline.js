@@ -57,13 +57,13 @@ export default function Home() {
         fetchCardsFromLocalStorage();
     }, [])
 
-        const pinUi = (
-            <PinParent>
-                <span>Enter your PIN</span>
-                <OtpInput value={pin.val} onChange={(val) => setPin({...pin, val: val})} numInputs={4} shouldAutoFocus containerStyle={containerStyle} inputStyle={inputStyle} />
-                <Button onClick={onPinSubmit}>Submit</Button>
-            </PinParent>
-        )
+    const pinUi = (
+        <PinParent>
+            <span>Enter your PIN</span>
+            <OtpInput value={pin.val} onChange={(val) => setPin({...pin, val: val})} numInputs={4} shouldAutoFocus containerStyle={containerStyle} inputStyle={inputStyle} />
+            <Button onClick={onPinSubmit}>Submit</Button>
+        </PinParent>
+    )
     return (<>
         <Head>
             <title>Save your cards</title>

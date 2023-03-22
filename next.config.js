@@ -1,6 +1,14 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
+const runtimeCaching = require("next-pwa/cache");
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  runtimeCaching,
+  buildExcludes: [/middleware-manifest.json$/],
+});
+
+const nextConfig = withPWA({
+  // next config
   eslint: {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
@@ -9,6 +17,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-}
+});
+module.exports = nextConfig;
 
-module.exports = nextConfig

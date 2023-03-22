@@ -56,8 +56,8 @@ const AddNewCard = ({onDrawerClose, onCardAdd}: AddNewCardProps) => {
             <OutlinedInput value={formatSetCcNumber(cardData.cardNumber)} placeholder='card number' onChange={(event) => setCardData({...cardData, cardNumber: event.target.value.trim()})} />
             <OutlinedInput value={cardData.cardOwnerName} placeholder='Card holder name' onChange={(event) => setCardData({...cardData, cardOwnerName: event.target.value})} />
             <div className='card-exp-cvv'>
-                <OutlinedInput type='month' value={cardData.cardExpiryDate} placeholder='Card Expiry' onChange={(event) => setCardData({...cardData, cardExpiryDate: event.target.value})} />
-                <OutlinedInput value={cardData.cardCvv} placeholder='CVV' onChange={(event) => setCardData({...cardData, cardCvv: event.target.value})} />
+                <OutlinedInput className='month' type='month' value={cardData.cardExpiryDate} placeholder='Card Expiry' onChange={(event) => setCardData({...cardData, cardExpiryDate: event.target.value})} />
+                <OutlinedInput className='cvv' value={cardData.cardCvv} placeholder='CVV' onChange={(event) => setCardData({...cardData, cardCvv: event.target.value})} />
             </div>
             <OutlinedInput value={cardData.cardBankOrigin} placeholder='Bank name' onChange={(event) => setCardData({...cardData, cardBankOrigin: event.target.value})} />
             <Button onClick={addCard} variant='contained' size='large' className='btn' disabled={disabled}>Submit</Button>
@@ -77,6 +77,11 @@ const DrawerParent = styled.div`
     display: flex;
     align-items: center;
     gap: 6px;
+    flex: 1;
+    width: 100%;
+    .month {
+      width: 50%;
+    }
   }
   .close-icon {
     position: absolute;

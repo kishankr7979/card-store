@@ -1,3 +1,4 @@
+const ENCRYPTION_KEY=process.env['NEXT_PUBLIC_ENCRYPTION_KEY'];
 export const formatSetCcNumber = (cardNumber: string) => {
     const inputVal = cardNumber.replace(/ /g, ""); //remove all the empty spaces in the input
     let inputNumbersOnly = inputVal.replace(/\D/g, ""); // Get only digits

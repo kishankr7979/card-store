@@ -7,8 +7,10 @@ import {Button, Alert} from "@mui/material";
 import {BottomDrawer} from "@/components/BottomDrawer";
 import AddNewCard from "@/modules/Card/components/AddNewCard";
 import OtpInput from 'react-otp-input';
+import Encryption from '@/utils/encryption';
 
 export default function Home() {
+    const secureTransfer = new Encryption();
     const [drawer, setDrawer] = useState({from: 'CARD', open: false});
     const [cards, setCards] = useState([]);
     const [pin, setPin] = useState({action: 'SET', val: '', error: false});
@@ -36,20 +38,22 @@ export default function Home() {
         borderRadius: '8px',
         fontWeight: 'bold',
     };
-    const onPinSubmit = () => {
+    const onPinSubmit = async () => {
+        const encrypted = await secureTransfer.encrypt(pin.val);
+        console.log({encrypted});
         let storedPin = localStorage.getItem('card-app-pin');
-        if(!storedPin) {
-            localStorage.setItem('card-app-pin', pin.val);
-            setDrawer({...drawer, open: false});
-            return;
-        }
-        if(pin.val === storedPin) {
-            setDrawer({...drawer, open: false, error: false})
-        }
-        else {
-            alert('wrong PIN')
-            setPin({...pin, val: ''})
-        }
+        // if(!storedPin) {
+        //     localStorage.setItem('card-app-pin', pin.val);
+        //     setDrawer({...drawer, open: false});
+        //     return;
+        // }
+        // if(pin.val === storedPin) {
+        //     setDrawer({...drawer, open: false, error: false})
+        // }
+        // else {
+        //     alert('wrong PIN')
+        //     setPin({...pin, val: ''})
+        // }
     }
 
     useEffect(() => {
